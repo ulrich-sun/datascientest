@@ -34,19 +34,19 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
-      volumeMounts: 
+        volumeMounts: 
+        - name: pgadmin-persitent-storage
+          mountPath: /pgadmin4/servers.json
+          subPath: servers.json
+        - name: pgadmin-persitent-storage-data
+          mountPath: /var/lib/pgadmin
+      volumes: 
       - name: pgadmin-persitent-storage
-        mountPath: /pgadmin4/servers.json
-        subPath: servers.json
+        configMap: 
+          name: pgadmin-cm
+          items:
+          - key: servers.json
+            path: servers.json
       - name: pgadmin-persitent-storage-data
-        mountPath: /var/lib/pgadmin
-    volumes: 
-    - name: pgadmin-persitent-storage
-      configMap: 
-        name: pgadmin-cm
-        items:
-        - key: servers.json
-          path: servers.json
-    - name: pgadmin-persitent-storage-data
-      persistentVolumeClaim:
-        claimName: pgadmin-pvc
+        persistentVolumeClaim:
+          claimName: pgadmin-pvc

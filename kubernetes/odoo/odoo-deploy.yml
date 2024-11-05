@@ -46,14 +46,14 @@ spec:
           mountPath: /etc/odoo
         - name: odoo-persitent-storage-extras
           mountPath: /mnt/extra-addons
-        volumes: 
-        - name: odoo-persitent-storage
-          persistentVolumeClaim:
-            claimName: odoo-pvc
-        - name: odoo-persitent-storage-odoo
-          hostPath: 
-            path: /data-odoo/config
-        - name: odoo-persitent-storage-extras
-          hostPath: 
-            path: /data-odoo/addons
+      volumes: 
+      - name: odoo-persitent-storage
+        persistentVolumeClaim:
+          claimName: odoo-pvc
+      - name: odoo-persitent-storage-odoo
+        hostPath: 
+          path: /data-odoo/config
+      - name: odoo-persitent-storage-extras
+        hostPath: 
+          path: /data-odoo/addons
 
