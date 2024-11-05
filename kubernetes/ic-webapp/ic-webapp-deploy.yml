@@ -28,9 +28,9 @@ spec:
             configMapKeyRef:
               key: pgadmin_url 
               name: ic-webapp-cm
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 8080

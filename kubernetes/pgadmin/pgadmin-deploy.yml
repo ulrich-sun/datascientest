@@ -28,10 +28,10 @@ spec:
             secretKeyRef:
               name: pgadmin-secret
               key: password
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 80
         volumeMounts: 
