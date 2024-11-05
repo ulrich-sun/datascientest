@@ -27,7 +27,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: pgadmin_url 
-              name: pgadmin-cm
+              name: ic-webapp-cm
         resources:
           limits:
             memory: "128Mi"

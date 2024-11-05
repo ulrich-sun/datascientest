@@ -32,7 +32,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: user 
-              name: pgadmin-cm
+              name: postgres-cm
         resources:
           limits:
             memory: "128Mi"
