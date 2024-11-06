@@ -9,10 +9,10 @@ pipeline {
         SERVER_PORT='8081'
 
     }
-    agent none
+    agent any
     stages {
         stage('build') {
-            agent none 
+            agent any 
             steps {
                 script {
                     sh '''
@@ -22,7 +22,7 @@ pipeline {
             }
         }
         stage('run container') {
-            agent none 
+            agent any 
             steps {
                 script {
                     sh '''
@@ -33,7 +33,7 @@ pipeline {
             }
         }
         stage('test container') {
-            agent none 
+            agent any 
             steps {
                 script {
                     sh '''
@@ -43,7 +43,7 @@ pipeline {
             }
         }
         stage('stop and push') {
-            agent none 
+            agent any 
             steps {
                 script {
                     sh '''
@@ -55,7 +55,7 @@ pipeline {
             }
         }
         // stage {
-        //     agent none 
+        //     agent any 
         //     steps {
         //         script {
         //             sh '''
