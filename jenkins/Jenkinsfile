@@ -4,9 +4,9 @@ pipeline {
         IMAGE_TAG = "1.1"
         DOCKERHUB_USERNAME="ulrichsteve"
         DOCKERHUB_PASSWORD=credentials('dockerhub_password')
-        SERVER_IP= 3.80.195.164
-        CONTAINER_PORT=8080
-        SERVER_PORT=8081
+        SERVER_IP= '3.80.195.164'
+        CONTAINER_PORT='8080'
+        SERVER_PORT='8081'
 
     }
     agent none
