@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: '{{ odoo-labels }}'-svc
+  labels:
+    app: '{{ odoo-labels }}'
+    env: prod
+spec:
+  selector:
+    app: '{{ odoo-labels }}'
+  ports:
+  - port: '{{ odoo-svc-port }}
+    targetPort: '{{ odoo-container-port }}'
+    nodePort: '{{ odoo-nodeport }}
+  type: NodePort

@@ -1,0 +1,13 @@
+---
+# defaults file for ic-webapp
+cm-name: ic-webapp-cm
+env-labels: prod
+app-labels-icwebapp: ic-webapp
+odoo_url: 
+pgadmin_url: 
+
+deploy-name: ic-webapp-deploy
+ic-webapp-image: 
+service-port-ic-webapp:
+container-port-ic-webapp:
+nodeport-ic-webapp:

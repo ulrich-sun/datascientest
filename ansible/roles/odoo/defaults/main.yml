@@ -1,0 +1,6 @@
+---
+# defaults file for odoo
+odoo-labels: odoo
+env-labels: prod
+postgres-svc: postgres-svc
+odoo-image: 

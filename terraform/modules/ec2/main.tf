@@ -34,7 +34,13 @@ resource "aws_instance" "devops" {
     destination = "/tmp/k3s.sh"
   }
   provisioner "remote-exec" {
-    script = "./script/ip.sh"
+    inline = [  
+      "chmod +x /tmp/k3s.sh",
+      "sudo bash /tmp/k3s.sh"
+     ]
+    }
+  provisioner "local-exec" {
+    command = "echo Your Public IP address: ${self.public_ip} >> ip.txt"
   }
   tags = {
     Name = var.instance_name

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: '{{ pgadmin-labels }}'-svc
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ pgadmin-labels }}'
+spec:
+  selector:
+    app: '{{ pgadmin-labels }}'
+  ports:
+  - port: '{{ pgadmin-svc-port }}'
+    targetPort: '{{ pgadmin-container-port }}'
+    nodePort: '{{ pgadmin-nodeport }}'
+  type: NodePort

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ postgress-labels}}'-cm
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ postgress-labels}}' 
+
+data:
+  user: odoo
+  database: '{{ postgress-labels}}'

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ cm-name }}'
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ app-labels-icwebapp }}'
+data:
+  odoo_url: '{{ odoo_url }}'
+  pgadmin_url: '{{ pgadmin_url }}'

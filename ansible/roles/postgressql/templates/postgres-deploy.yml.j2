@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ postgress-labels}}'-deploy
+  labels:
+    app: '{{ postgress-labels}}'
+    env: '{{ env-labels }}'
+spec:
+  selector:
+    matchLabels:
+      app: '{{ postgress-labels}}'
+  template:
+    metadata:
+      labels:
+        app: '{{ postgress-labels}}'
+    spec:
+      containers:
+      - name: '{{ postgress-labels}}'
+        image: '{{ postgress-image }}'
+        env:
+        - name: '{{ postgress-labels}}'_DB
+          valueFrom:
+            configMapKeyRef:
+              key: database 
+              name: '{{ postgress-labels}}'-cm
+        - name: '{{ postgress-labels}}'_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password 
+              name: '{{ postgress-labels}}'-secret
+        - name: '{{ postgress-labels}}'_USER
+          valueFrom:
+            configMapKeyRef:
+              key: user 
+              name: '{{ postgress-labels}}'-cm
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 5432

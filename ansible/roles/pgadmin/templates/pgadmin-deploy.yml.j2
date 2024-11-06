@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ pgamdin-labels }}'-deploy
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ pgamdin-labels }}'
+spec:
+  selector:
+    matchLabels:
+      app: '{{ pgamdin-labels }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ pgamdin-labels }}'
+    spec:
+      containers:
+      - name: '{{ pgamdin-labels }}'
+        image: '{{ pgadmin-image }}'
+        env:
+        - name: '{{ pgamdin-labels }}'_DEFAULT_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: email 
+              name: '{{ pgamdin-labels }}'-cm
+        - name: '{{ pgamdin-labels }}'_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: '{{ pgamdin-labels }}'-secret
+              key: password
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts: 
+        - name: '{{ pgamdin-labels }}'-persitent-storage
+          mountPath: /'{{ pgamdin-labels }}'4/servers.json
+          subPath: servers.json
+        - name: '{{ pgamdin-labels }}'-persitent-storage-data
+          mountPath: /var/lib/'{{ pgamdin-labels }}'
+      volumes: 
+      - name: '{{ pgamdin-labels }}'-persitent-storage
+        configMap: 
+          name: '{{ pgamdin-labels }}'-cm
+          items:
+          - key: servers.json
+            path: servers.json
+      - name: '{{ pgamdin-labels }}'-persitent-storage-data
+        persistentVolumeClaim:
+          claimName: '{{ pgamdin-labels }}'-pvc

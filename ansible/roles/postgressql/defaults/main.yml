@@ -1,0 +1,7 @@
+---
+# defaults file for postgressql
+postgres-labels: 
+env-labels: 
+postgres-svc-port:
+postgres-container-port:
+postgres-image: 

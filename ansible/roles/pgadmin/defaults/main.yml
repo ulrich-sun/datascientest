@@ -1,0 +1,8 @@
+---
+# defaults file for pgadmin
+pgadmin-labels: pgadmin
+env-labels: prod
+pgadmin-images: 
+pgadmin-container-port:
+pgadmin-svc-port:
+pgadmin-nodeport:

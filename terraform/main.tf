@@ -11,6 +11,7 @@ module "ec2" {
 module "sg" {
   source = "./modules/sg"
   security_group = var.security_group
+  security_group_ports = var.security_group_ports
 }
 
 module "keypair" {

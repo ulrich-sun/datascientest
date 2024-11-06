@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ deploy-name }}'
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ app-labels-icwebapp }}'
+spec:
+  selector:
+    matchLabels:
+      app: '{{ app-labels-icwebapp }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ app-labels-icwebapp }}'
+    spec:
+      containers:
+      - name: '{{ app-labels-icwebapp }}'
+        image: '{{ ic-webapp-image }}
+        env:
+        - name: ODOO_URL 
+          valueFrom: 
+            configMapKeyRef:
+              key: odoo_url 
+              name: '{{ app-labels-icwebapp }}'-cm
+        - name: PGADMIN_URL 
+          valueFrom:
+            configMapKeyRef:
+              key: pgadmin_url 
+              name: '{{ app-labels-icwebapp }}'-cm
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 8080

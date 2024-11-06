@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: '{{ pgadmin-labels }}'-pv
+  labels: 
+    env: prod
+    type: local
+    app: '{{ pgadmin-labels }}'
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data-'{{ pgadmin-labels }}'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: '{{ pgadmin-labels }}'-pvc
+  labels: 
+    env: '{{ env-labels }}'
+    app: '{{ pgadmin-labels }}' 
+    type: local
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  accessModes:
+    - ReadWriteOnce

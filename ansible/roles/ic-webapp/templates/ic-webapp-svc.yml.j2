@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: '{{ app-labels-icwebapp }}'-svc
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ app-labels-icwebapp }}'
+spec:
+  selector:
+    app: '{{ app-labels-icwebapp }}'
+  ports:
+  - port: '{{ service-port-ic-webapp }} '
+    targetPort: '{{ container-port-ic-webapp }}]
+    nodePort: '{{ nodeport-ic-webapp }}'
+  type: NodePort

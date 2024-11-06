@@ -12,3 +12,5 @@ variable "volume_size" {
 }
 variable "instance_name" { 
 }
+variable "security_group_ports" {
+}

@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ odoo-labels }}'-deployment
+  labels:
+    app: '{{ odoo-labels }}'
+    env: '{{ env-labels }}'
+spec:
+  selector:
+    matchLabels:
+      app: '{{ odoo-labels }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ odoo-labels }}'
+    spec:
+      containers:
+      - name: '{{ odoo-labels }}'
+        image: '{{ odoo-image }}'
+        env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: '{{ odoo-labels }}'-secret
+        - name: PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              key: password 
+              name: '{{ odoo-labels }}'-secret 
+        - name: HOST 
+          valueFrom:
+            configMapKeyRef:
+              key: host 
+              name: '{{ odoo-labels }}'-cm
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 8069
+        volumeMounts:
+        - name: odoo-persitent-storage
+          mountPath: /var/lib/odoo
+        - name: odoo-persitent-storage-odoo
+          mountPath: /etc/odoo
+        - name: odoo-persitent-storage-extras
+          mountPath: /mnt/extra-addons
+      volumes: 
+      - name: odoo-persitent-storage
+        persistentVolumeClaim:
+          claimName: '{{ odoo-labels }}'-pvc
+      - name: odoo-persitent-storage-odoo
+        hostPath: 
+          path: /data-odoo/config
+      - name: odoo-persitent-storage-extras
+        hostPath: 
+          path: /data-odoo/addons
+

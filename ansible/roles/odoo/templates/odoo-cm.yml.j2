@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ odoo-labels }}'-cm
+  labels:
+    env: '{{ env-labels }}'
+    app: '{{ odoo-labels }}'
+data:
+  host: '{{ postgres-svc }}'

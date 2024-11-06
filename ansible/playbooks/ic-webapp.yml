@@ -1,0 +1,10 @@
+---
+- name: icgroup
+  hosts: all 
+  become: yes
+  roles:
+    - postgressql
+    - odoo
+    - pgadmin
+    - ic-webapp
+    
