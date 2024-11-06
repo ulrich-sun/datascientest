@@ -54,7 +54,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage('build ec2') {
             agent {
                 docker {
                     image 'jenkins/jnlp-agent-terraform'
