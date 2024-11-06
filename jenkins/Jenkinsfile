@@ -54,7 +54,31 @@ pipeline {
                 }
             }
         }
-        // stage {
+        stage {
+            agent {
+                docker {
+                    image 'jenkins/jnlp-agent-terraform'
+                }
+            } 
+            environment{
+                AWS_ACCESS_KEY_ID=credentials('aws_access_key_id')
+                AWS_SECRET_ACCESS_KEY=('aws_secret_access_key')
+            }
+            steps {
+                script {
+                    sh '''
+                    echo "[default]" > ~/.aws/credentials
+                    echo -e "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+                    echo -e "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY >> ~/.aws/credentials
+                    cd ./terraform
+                    terraform init
+                    terraform plan
+                    terraform apply -auto-approve
+                    '''
+                }
+            }
+        }
+        //   stage {
         //     agent any 
         //     steps {
         //         script {
