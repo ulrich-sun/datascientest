@@ -1,0 +1,3 @@
+---
+- import_playbook: retrieve_kubeconfig_file.yml
+- import_playbook: apply_kubernetes_manifest.yml
