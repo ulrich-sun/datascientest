@@ -1,0 +1,6 @@
+---
+- name: Appliquer des manifests Kubernetes
+  hosts: localhost
+  tasks:
+    - name: Appliquer le manifest Kubernetes
+      command: "kubectl --kubeconfig=./kubeconfig-k3s.yaml apply -k ~/datascientest/kubernetes"

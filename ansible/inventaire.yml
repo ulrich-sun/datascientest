@@ -1,5 +1,6 @@
 all:
   children:
     prod:
-      k3s:
-      docker:
+      hosts:
+        k3s:
+
